@@ -3,977 +3,457 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Google Fonts: Space Grotesk (display) + Inter (body) -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
-  <style>
-    :root {
-      --navy:   #0D1B2A;   /* primary dark background     */
-      --slate:  #1A2D42;   /* card / section backgrounds  */
-      --amber:  #F5A623;   /* accent — all interactive UI */
-      --amber-dim: #C47E0F;
-      --off-white: #EDF2F7;
-      --muted:  #8A9BB0;
-      --text:   #E2EBF4;
-      --radius: 10px;
-      --font-display: 'Space Grotesk', sans-serif;
-      --font-body:    'Inter', sans-serif;
-      --transition:   0.3s ease;
-    }
 
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      background: var(--navy);
-      color: var(--text);
-      margin: 0;
-      line-height: 1.7;
-    }
-    h1, h2, h3, h4, h5 {
-      font-family: var(--font-display);
-      font-weight: 700;
-    }
-    a { color: var(--amber); text-decoration: none; }
-    a:hover { color: var(--amber-dim); }
+  <title>M.Moosa | Front-End Developer</title>
+  <meta name="description" content="Portfolio of Your Name, a front-end developer and software engineering student."/>
 
-    .section-label {
-      font-family: var(--font-display);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      color: var(--off-white);
-      margin-bottom: 1rem;
-    }
-
-    .section-divider {
-      width: 48px;
-      height: 3px;
-      background: var(--amber);
-      border: none;
-      margin: 0 0 2rem 0;
-      border-radius: 2px;
-    }
-
-    section { padding: 100px 0; }
-
-    #mainNav {
-      background: transparent;
-      transition: background var(--transition), box-shadow var(--transition);
-      padding: 1.2rem 0;
-      font-family: var(--font-display);
-    }
-
-    #mainNav.scrolled {
-      background: rgba(13, 27, 42, 0.97);
-      box-shadow: 0 2px 20px rgba(0,0,0,0.4);
-      padding: 0.7rem 0;
-    }
-
-    #mainNav .navbar-brand {
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: var(--off-white);
-      letter-spacing: -0.02em;
-    }
-
-    #mainNav .navbar-brand span { color: var(--amber); }
-
-    #mainNav .nav-link {
-      color: var(--muted) !important;
-      font-weight: 500;
-      font-size: 0.9rem;
-      padding: 0.4rem 0.9rem !important;
-      transition: color var(--transition);
-    }
-
-    #mainNav .nav-link:hover,
-    #mainNav .nav-link.active { color: var(--amber) !important; }
-
-    .navbar-toggler {
-      border-color: var(--muted);
-    }
-    .navbar-toggler-icon {
-      /* Custom hamburger to match palette */
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%238A9BB0' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding: 0;
-      /* Layered background: subtle grid + deep navy */
-      background:
-        linear-gradient(rgba(13,27,42,0.85), rgba(13,27,42,0.95)),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='%231A2D42' stroke-width='1'/%3E%3C/svg%3E");
-    }
-    #hero::before {
-      content: '';
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(700px, 90vw);
-      height: 400px;
-      background: radial-gradient(ellipse, rgba(245,166,35,0.10) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-inner { position: relative; z-index: 1; }
-
-    .hero-avatar {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 3px solid var(--amber);
-      overflow: hidden;
-      margin: 0 auto 2rem;
-      background: var(--slate);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 0 8px rgba(245,166,35,0.10);
-    }
-    .hero-avatar .avatar-placeholder {
-      font-size: 5rem;
-      color: var(--muted);
-      line-height: 1;
-    }
-
-    .hero-greeting {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-name {
-      font-size: clamp(2.8rem, 8vw, 5.5rem);
-      font-weight: 700;
-      color: var(--off-white);
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-name .accent { color: var(--amber); }
-
-    .hero-tagline {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      color: var(--muted);
-      font-weight: 300;
-      margin-bottom: 2.5rem;
-      max-width: 520px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .typewriter-wrap {
-      display: inline-block;
-      border-right: 2px solid var(--amber);
-      padding-right: 3px;
-      animation: blink 0.8s step-end infinite;
-    }
-
-    @keyframes blink { 50% { border-color: transparent; } }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--amber);
-      color: var(--navy);
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      padding: 0.75rem 2rem;
-      border-radius: 50px;
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
-      border: none;
-    }
-
-    .hero-cta:hover {
-      background: var(--amber-dim);
-      color: var(--navy);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(245,166,35,0.35);
-    }
-
-    .hero-cta-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: transparent;
-      color: var(--off-white);
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      padding: 0.75rem 2rem;
-      border-radius: 50px;
-      border: 1.5px solid rgba(255,255,255,0.25);
-      transition: border-color var(--transition), color var(--transition), transform var(--transition);
-      margin-left: 0.75rem;
-    }
-
-    .hero-cta-outline:hover {
-      border-color: var(--amber);
-      color: var(--amber);
-      transform: translateY(-2px);
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      color: var(--muted);
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      animation: nudge 2s ease-in-out infinite;
-    }
-
-    @keyframes nudge {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(6px); }
-    }
-    #about { background: var(--slate); }
-
-    .about-img-wrap {
-      position: relative;
-    }
-
-    .about-img-box {
-      width: 100%;
-      aspect-ratio: 4/5;
-      background: var(--navy);
-      border-radius: var(--radius);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      /* The decorative amber border offset */
-      box-shadow: 12px 12px 0 var(--amber);
-    }
-
-    .about-img-box i {
-      font-size: 6rem;
-      color: var(--muted);
-    }
-    .about-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .stat-box {
-      background: var(--navy);
-      border-radius: var(--radius);
-      padding: 1.2rem;
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .stat-box .stat-num {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--amber);
-      display: block;
-    }
-
-    .stat-box .stat-label {
-      font-size: 0.78rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    #skills { background: var(--navy); }
-
-    .skill-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 1.25rem;
-    }
-    .flip-card {
-      perspective: 900px;
-      height: 180px;
-      cursor: default;
-    }
-
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-      transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
-    }
-    .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
-
-    .flip-front, .flip-back {
-      position: absolute;
-      inset: 0;
-      backface-visibility: hidden;
-      border-radius: var(--radius);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1.25rem;
-      border: 1px solid rgba(255,255,255,0.07);
-    }
-    .flip-front {
-      background: var(--slate);
-      gap: 0.75rem;
-    }
-
-    .flip-front .skill-icon {
-      width: 54px;
-      height: 54px;
-      background: rgba(245,166,35,0.12);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.7rem;
-      color: var(--amber);
-      transition: background var(--transition);
-    }
-
-    .flip-card:hover .flip-front .skill-icon { background: rgba(245,166,35,0.22); }
-
-    .flip-front .skill-name {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--off-white);
-      text-align: center;
-    }
-    .flip-back {
-      background: var(--amber);
-      transform: rotateY(180deg);
-      gap: 0.5rem;
-    }
-
-    .flip-back .skill-level {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--navy);
-    }
-
-    .flip-back .skill-detail {
-      font-size: 0.78rem;
-      color: rgba(13,27,42,0.7);
-      text-align: center;
-      font-weight: 500;
-    }
-    .skill-bar-wrap {
-      width: 100%;
-      height: 5px;
-      background: rgba(13,27,42,0.2);
-      border-radius: 3px;
-      overflow: hidden;
-      margin-top: 0.4rem;
-    }
-
-    .skill-bar-fill {
-      height: 100%;
-      background: var(--navy);
-      border-radius: 3px;
-    }
-    #projects { background: var(--slate); }
-
-    .project-card {
-      background: var(--navy);
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.06);
-      transition: transform var(--transition), box-shadow var(--transition);
-      height: 100%;
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-    .project-thumb {
-      height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      color: rgba(255,255,255,0.2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card-body {
-      padding: 1.5rem;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .tag {
-      font-size: 0.7rem;
-      font-family: var(--font-display);
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.65rem;
-      border-radius: 50px;
-      background: rgba(245,166,35,0.12);
-      color: var(--amber);
-    }
-
-    .project-title {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--off-white);
-      margin-bottom: 0.5rem;
-    }
-
-    .project-desc {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-
-    .project-link {
-      font-family: var(--font-display);
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--amber);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      transition: gap var(--transition);
-    }
-
-    .project-link:hover { gap: 0.6rem; color: var(--amber-dim); }
-
-    .contact-card {
-      background: var(--slate);
-      border-radius: var(--radius);
-      padding: 2.5rem;
-      border: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .contact-info-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1.75rem;
-    }
-
-    .contact-icon {
-      width: 44px;
-      height: 44px;
-      background: rgba(245,166,35,0.1);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--amber);
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    .contact-info-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      font-family: var(--font-display);
-      font-weight: 600;
-      margin-bottom: 0.15rem;
-    }
-
-    .contact-info-value {
-      color: var(--off-white);
-      font-size: 0.95rem;
-    }
-
-    .form-control {
-      background: var(--navy);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--text);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      font-family: var(--font-body);
-      transition: border-color var(--transition);
-    }
-
-    .form-control::placeholder { color: var(--muted); }
-    .form-control:focus {
-      background: var(--navy);
-      border-color: var(--amber);
-      box-shadow: 0 0 0 3px rgba(245,166,35,0.15);
-      color: var(--text);
-    }
-
-    .form-label {
-      font-family: var(--font-display);
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 0.4rem;
-    }
-
-    .btn-send {
-      background: var(--amber);
-      color: var(--navy);
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      padding: 0.8rem 2.2rem;
-      border: none;
-      border-radius: 50px;
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
-      width: 100%;
-    }
-
-    .btn-send:hover {
-      background: var(--amber-dim);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(245,166,35,0.3);
-    }
-
-    footer {
-      background: #070E18;
-      padding: 3rem 0 2rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .footer-brand {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--off-white);
-    }
-
-    .footer-brand span { color: var(--amber); }
-
-    .footer-tagline {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-top: 0.3rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .social-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--slate);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-size: 1rem;
-      transition: background var(--transition), color var(--transition), transform var(--transition);
-      border: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .social-btn:hover {
-      background: var(--amber);
-      color: var(--navy);
-      transform: translateY(-3px);
-    }
-
-    .footer-bottom {
-      margin-top: 2.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
-    .delay-4 { transition-delay: 0.4s; }
-    .delay-5 { transition-delay: 0.5s; }
-    .delay-6 { transition-delay: 0.6s; }
-
-    @media (max-width: 768px) {
-      section { padding: 70px 0; }
-
-      .about-img-box { margin-bottom: 3rem; }
-      .about-img-wrap { margin-bottom: 3rem; }
-      .about-stats { grid-template-columns: 1fr 1fr; }
-
-      .hero-cta-outline { margin-left: 0; margin-top: 0.75rem; }
-
-      .skill-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 480px) {
-      .skill-grid { grid-template-columns: repeat(2, 1fr); }
-      .about-stats { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"rel="stylesheet"/>
+   <link rel="stylesheet" href="asset/css/style.css">
 </head>
+
 <body>
+  <!-- Navigation -->
   <nav id="mainNav" class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#hero">H<span>M</span></a>
-      <button class="navbar-toggler" type="button"
-              data-bs-toggle="collapse" data-bs-target="#navMenu"
-              aria-label="Toggle navigation">
+      <a class="navbar-brand" href="#hero">
+        H<span>M</span>
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu"
+        aria-controls="navMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        id="navMenu"
+      >
         <ul class="navbar-nav gap-1">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#skills">Skills</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#projects">Projects</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
+  <!-- Hero -->
   <section id="hero">
-    <div class="container text-center hero-inner">
-      <div class="hero-avatar mx-auto reveal">
-         <img src="asset/images/moosa.jpeg" alt="" class="img-fluid" style="width:100%;height:100%;object-fit:cover;">
-      </div>
-      <p class="hero-greeting reveal delay-1">Hello, I'm</p>
-      <h1 class="hero-name reveal delay-2">
-        Hafiz <span class="accent">M.Moosa</span>
-      </h1>
-      <p class="hero-tagline reveal delay-3">
-        <span id="typewriterText" class="typewriter-wrap"></span>
-      </p>
-      <div class="reveal delay-4">
-        <a href="#projects" class="hero-cta">
-          <i class="bi bi-grid-3x3-gap-fill"></i> View My Work
-        </a>
-        <a href="#contact" class="hero-cta-outline">
-          <i class="bi bi-envelope"></i> Get In Touch
-        </a>
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+
+    <div class="hero-orb orb-one"></div>
+    <div class="hero-orb orb-two"></div>
+
+    <div class="container hero-inner">
+      <div class="row align-items-center min-vh-100">
+        <div class="col-lg-8">
+          <p class="hero-greeting reveal reveal-left">
+            Hello, I'm
+          </p>
+
+          <h1 class="hero-name reveal reveal-left delay-1">
+            Hafiz <span class="accent">M.Moosa</span>
+          </h1>
+
+          <p class="hero-tagline reveal reveal-left delay-2">
+            <span id="typewriterText" class="typewriter-wrap"></span>
+          </p>
+
+          <div class="hero-actions reveal reveal-left delay-3">
+            <a href="#projects" class="hero-cta">
+              <i class="bi bi-grid-3x3-gap-fill"></i>
+              View My Work
+            </a>
+
+            <a href="asset/files/cv.pdf" class="hero-cta-outline" download>
+              <i class="bi bi-download"></i>
+              Download Resume
+            </a>
+
+            <a href="#contact" class="hero-text-link">
+              Get in touch
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 d-none d-lg-flex justify-content-end">
+          <div class="hero-code-card reveal reveal-right delay-2">
+            <div class="code-card-top">
+              <span></span>
+              <span></span>
+              <span></span>
+              <small>portfolio.js</small>
+            </div>
+
+            <pre><code><span class="code-purple">const</span> developer = {
+  name: <span class="code-green">"Hafiz Moosa"</span>,
+  focus: <span class="code-green">"Frontend"</span>,
+  builds: <span class="code-orange">true</span>,
+  available: <span class="code-orange">true</span>
+};</code></pre>
+          </div>
+        </div>
       </div>
     </div>
+
     <div class="scroll-hint">
-      <span>Scroll</span>
+      <span>Scroll to explore</span>
       <i class="bi bi-chevron-down"></i>
     </div>
-  </section><!-- /hero -->
+  </section>
+
   <!-- About -->
-<section id="about">
+  <section id="about">
     <div class="container">
-        <div class="row align-items-center g-5">
-
-            <!-- Left Side -->
-            <div class="col-lg-5 reveal">
-                <div class="about-img-wrap">
-                    <div class="about-img-box">
-                        <i class="bi bi-code-slash" style="font-size:5rem; color:var(--muted);"></i>
-                    </div>
-                </div>
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5 reveal reveal-left">
+          <div class="about-img-wrap">
+            <div class="about-img-box">
+              <i class="bi bi-code-slash"></i>
             </div>
-
-            <!-- Right Side -->
-            <div class="col-lg-7 reveal delay-2">
-
-                <p class="section-label">About Me</p>
-
-                <h2 class="section-title">
-                    Building Modern &<br>Responsive Websites.
-                </h2>
-
-                <hr class="section-divider">
-
-                <p style="color:var(--muted); margin-bottom:1rem;">
-                    I'm Muhammad Moosa, a passionate Front-End Developer and Software Engineering student. I enjoy creating modern, responsive, and user-friendly websites using HTML, CSS, Bootstrap, and JavaScript while continuously improving my skills.
-                </p>
-
-                <p style="color:var(--muted); margin-bottom:2rem;">
-                    As a fresher, I have completed several personal projects to strengthen my practical knowledge. I'm always eager to learn new technologies and build high-quality web experiences with clean design and excellent performance.
-                </p>
-
-                <div class="about-stats">
-
-                    <div class="stat-box reveal delay-1">
-                        <span class="stat-num">3+</span>
-                        <span class="stat-label">Projects Completed</span>
-                    </div>
-
-                    <div class="stat-box reveal delay-2">
-                        <span class="stat-num">Fresher</span>
-                        <span class="stat-label">Experience Level</span>
-                    </div>
-
-                    <div class="stat-box reveal delay-3">
-                        <span class="stat-num">100%</span>
-                        <span class="stat-label">Learning Passion</span>
-                    </div>
-
-                    <div class="stat-box reveal delay-4">
-                        <span class="stat-num">24/7</span>
-                        <span class="stat-label">Ready to Learn</span>
-                    </div>
-
-                </div>
-
-            </div>
-
+          </div>
         </div>
+
+        <div class="col-lg-7 reveal reveal-right delay-2">
+          <p class="section-label">About Me</p>
+
+          <h2 class="section-title">
+            Building Modern &<br />
+            Responsive Websites.
+          </h2>
+
+          <hr class="section-divider" />
+
+          <p style="color: var(--muted); margin-bottom: 1rem;">
+            I'm Muhammad Moosa, a passionate Front-End Developer and Software
+            Engineering student. I enjoy creating modern, responsive, and
+            user-friendly websites using HTML, CSS, Bootstrap, and JavaScript
+            while continuously improving my skills.
+          </p>
+
+          <p style="color: var(--muted); margin-bottom: 2rem;">
+            As a fresher, I have completed several personal projects to
+            strengthen my practical knowledge. I'm always eager to learn new
+            technologies and build high-quality web experiences with clean
+            design and excellent performance.
+          </p>
+
+          <div class="about-stats">
+            <div class="stat-box reveal reveal-left delay-1">
+              <span class="stat-num">3+</span>
+              <span class="stat-label">Projects Completed</span>
+            </div>
+
+            <div class="stat-box reveal reveal-right delay-2">
+              <span class="stat-num">Fresher</span>
+              <span class="stat-label">Experience Level</span>
+            </div>
+
+            <div class="stat-box reveal reveal-left delay-3">
+              <span class="stat-num">100%</span>
+              <span class="stat-label">Learning Passion</span>
+            </div>
+
+            <div class="stat-box reveal reveal-right delay-4">
+              <span class="stat-num">24/7</span>
+              <span class="stat-label">Ready to Learn</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</section><!-- /about -->
-<!-- Skills -->
+  </section>
+
+  <!-- Skills -->
   <section id="skills">
     <div class="container">
-      <div class="text-center mb-5 reveal">
+      <div class="text-center mb-5 reveal reveal-left">
         <p class="section-label">What I Know</p>
-        <h2 class="section-title">Technical Skills</h2>
-        <hr class="section-divider mx-auto">
-        <p style="color:var(--muted); max-width:500px; margin:0 auto; font-size:0.9rem;">
+
+        <h2 class="section-title">
+          Technical Skills
+        </h2>
+
+        <hr class="section-divider mx-auto" />
+
+        <p
+          style="
+            color: var(--muted);
+            max-width: 500px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+          "
+        >
           Hover a card to see my proficiency level.
         </p>
       </div>
 
       <div class="skill-grid">
-        <div class="flip-card reveal delay-1">
+        <div class="flip-card reveal reveal-left delay-1">
           <div class="flip-card-inner">
             <div class="flip-front">
-              <div class="skill-icon"><i class="bi bi-filetype-html"></i></div>
+              <div class="skill-icon">
+                <i class="bi bi-filetype-html"></i>
+              </div>
               <span class="skill-name">HTML5</span>
             </div>
+
             <div class="flip-back">
               <span class="skill-level">85%</span>
-              <span class="skill-detail">Semantic markup, accessibility, SEO</span>
+              <span class="skill-detail">
+                Semantic markup, accessibility, SEO
+              </span>
               <div class="skill-bar-wrap">
-                <div class="skill-bar-fill" style="width:90%"></div>
+                <div class="skill-bar-fill" style="width: 90%;"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="flip-card reveal delay-2">
+
+        <div class="flip-card reveal reveal-right delay-2">
           <div class="flip-card-inner">
             <div class="flip-front">
-              <div class="skill-icon"><i class="bi bi-filetype-css"></i></div>
+              <div class="skill-icon">
+                <i class="bi bi-filetype-css"></i>
+              </div>
               <span class="skill-name">CSS3</span>
             </div>
+
             <div class="flip-back">
               <span class="skill-level">65%</span>
-              <span class="skill-detail">Flexbox, Grid, animations, responsive design</span>
+              <span class="skill-detail">
+                Flexbox, Grid, animations, responsive design
+              </span>
               <div class="skill-bar-wrap">
-                <div class="skill-bar-fill" style="width:85%"></div>
+                <div class="skill-bar-fill" style="width: 85%;"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="flip-card reveal delay-3">
+
+        <div class="flip-card reveal reveal-left delay-3">
           <div class="flip-card-inner">
             <div class="flip-front">
-              <div class="skill-icon"><i class="bi bi-filetype-js"></i></div>
+              <div class="skill-icon">
+                <i class="bi bi-filetype-js"></i>
+              </div>
               <span class="skill-name">JavaScript</span>
             </div>
+
             <div class="flip-back">
               <span class="skill-level">60%</span>
-              <span class="skill-detail">ES6+, DOM manipulation, async/await</span>
+              <span class="skill-detail">
+                ES6+, DOM manipulation, async/await
+              </span>
               <div class="skill-bar-wrap">
-                <div class="skill-bar-fill" style="width:80%"></div>
+                <div class="skill-bar-fill" style="width: 80%;"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="flip-card reveal">
-    <div class="flip-card-inner">
-        <div class="flip-front">
-            <div class="skill-icon">
-                <i class="bi bi-bootstrap-fill"></i>
-            </div>
-            <span class="skill-name">Bootstrap</span>
-        </div>
 
-        <div class="flip-back">
-            <span class="skill-level">75%</span>
-            <span class="skill-detail">
-                Responsive layouts, components, grid system
-            </span>
-
-            <div class="skill-bar-wrap">
-                <div class="skill-bar-fill" style="width:90%"></div>
-            </div>
-        </div>
-    </div>
-</div>
-        <div class="flip-card reveal delay-4">
+        <div class="flip-card reveal reveal-right delay-4">
           <div class="flip-card-inner">
             <div class="flip-front">
-              <div class="skill-icon"><i class="bi bi-filetype-php"></i></div>
-              <span class="skill-name">PHP</span>
+              <div class="skill-icon">
+                <i class="bi bi-bootstrap-fill"></i>
+              </div>
+              <span class="skill-name">Bootstrap</span>
             </div>
+
             <div class="flip-back">
               <span class="skill-level">75%</span>
-              <span class="skill-detail">Server-side scripting, forms, APIs</span>
+              <span class="skill-detail">
+                Responsive layouts, components, grid system
+              </span>
               <div class="skill-bar-wrap">
-                <div class="skill-bar-fill" style="width:75%"></div>
+                <div class="skill-bar-fill" style="width: 90%;"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="flip-card reveal delay-5">
+
+        <div class="flip-card reveal reveal-left delay-5">
           <div class="flip-card-inner">
             <div class="flip-front">
-              <div class="skill-icon"><i class="bi bi-database-fill"></i></div>
+              <div class="skill-icon">
+                <i class="bi bi-filetype-php"></i>
+              </div>
+              <span class="skill-name">PHP</span>
+            </div>
+
+            <div class="flip-back">
+              <span class="skill-level">75%</span>
+              <span class="skill-detail">
+                Server-side scripting, forms, APIs
+              </span>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar-fill" style="width: 75%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card reveal reveal-right delay-6">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="skill-icon">
+                <i class="bi bi-database-fill"></i>
+              </div>
               <span class="skill-name">MySQL</span>
             </div>
+
             <div class="flip-back">
               <span class="skill-level">70%</span>
-              <span class="skill-detail">Queries, joins, schema design</span>
+              <span class="skill-detail">
+                Queries, joins, schema design
+              </span>
               <div class="skill-bar-wrap">
-                <div class="skill-bar-fill" style="width:70%"></div>
+                <div class="skill-bar-fill" style="width: 70%;"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="flip-card reveal delay-6">
+
+        <div class="flip-card reveal reveal-left delay-1">
           <div class="flip-card-inner">
             <div class="flip-front">
-              <div class="skill-icon"><i class="bi bi-file-word-fill"></i></div>
+              <div class="skill-icon">
+                <i class="bi bi-file-word-fill"></i>
+              </div>
               <span class="skill-name">MS Word</span>
             </div>
+
             <div class="flip-back">
               <span class="skill-level">90%</span>
-              <span class="skill-detail">Documents, templates, mail merge</span>
+              <span class="skill-detail">
+                Documents, templates, mail merge
+              </span>
               <div class="skill-bar-wrap">
-                <div class="skill-bar-fill" style="width:90%"></div>
+                <div class="skill-bar-fill" style="width: 90%;"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="flip-card reveal">
+
+        <div class="flip-card reveal reveal-right delay-2">
           <div class="flip-card-inner">
             <div class="flip-front">
-              <div class="skill-icon"><i class="bi bi-file-ppt-fill"></i></div>
+              <div class="skill-icon">
+                <i class="bi bi-file-ppt-fill"></i>
+              </div>
               <span class="skill-name">PowerPoint</span>
             </div>
+
             <div class="flip-back">
               <span class="skill-level">88%</span>
-              <span class="skill-detail">Decks, animations, presentations</span>
+              <span class="skill-detail">
+                Decks, animations, presentations
+              </span>
               <div class="skill-bar-wrap">
-                <div class="skill-bar-fill" style="width:88%"></div>
+                <div class="skill-bar-fill" style="width: 88%;"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="flip-card reveal">
-    <div class="flip-card-inner">
-        <div class="flip-front">
-            <div class="skill-icon">
+
+        <div class="flip-card reveal reveal-left delay-3">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="skill-icon">
                 <i class="bi bi-git"></i>
+              </div>
+              <span class="skill-name">Git</span>
             </div>
-            <span class="skill-name">Git</span>
-        </div>
 
-        <div class="flip-back">
-            <span class="skill-level">80%</span>
-            <span class="skill-detail">
+            <div class="flip-back">
+              <span class="skill-level">80%</span>
+              <span class="skill-detail">
                 Version control, commits, branches
-            </span>
-
-            <div class="skill-bar-wrap">
-                <div class="skill-bar-fill" style="width:80%"></div>
+              </span>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar-fill" style="width: 80%;"></div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-<div class="flip-card reveal">
-    <div class="flip-card-inner">
-        <div class="flip-front">
-            <div class="skill-icon">
+
+        <div class="flip-card reveal reveal-right delay-4">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="skill-icon">
                 <i class="bi bi-github"></i>
+              </div>
+              <span class="skill-name">GitHub</span>
             </div>
-            <span class="skill-name">GitHub</span>
-        </div>
 
-        <div class="flip-back">
-            <span class="skill-level">85%</span>
-            <span class="skill-detail">
+            <div class="flip-back">
+              <span class="skill-level">85%</span>
+              <span class="skill-detail">
                 Repository management, collaboration
-            </span>
-
-            <div class="skill-bar-wrap">
-                <div class="skill-bar-fill" style="width:85%"></div>
+              </span>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar-fill" style="width: 85%;"></div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-        
-
       </div>
     </div>
-  </section><!-- /skills -->
-<!-- projects -->
+  </section>
+
+  <!-- Projects -->
   <section id="projects">
     <div class="container">
-      <div class="text-center mb-5 reveal">
+      <div class="text-center mb-5 reveal reveal-left">
         <p class="section-label">My Work</p>
-        <h2 class="section-title">Featured Projects</h2>
-        <hr class="section-divider mx-auto">
+
+        <h2 class="section-title">
+          Featured Projects
+        </h2>
+
+        <hr class="section-divider mx-auto" />
       </div>
+
       <div class="row g-4">
-        <div class="col-md-6 col-lg-4 reveal delay-1">
+        <div class="col-md-6 col-lg-4 reveal reveal-left delay-1">
           <div class="project-card">
-            <div class="project-thumb" style="background: linear-gradient(135deg, #1a3a5c, #0d2035);">
+            <div
+              class="project-thumb"
+              style="
+                background:
+                  linear-gradient(
+                    135deg,
+                    rgba(99, 102, 241, 0.55),
+                    rgba(13, 32, 53, 0.9)
+                  );
+              "
+            >
               <i class="bi bi-globe2"></i>
             </div>
+
             <div class="project-card-body">
               <div class="project-tags">
                 <span class="tag">HTML</span>
@@ -981,272 +461,667 @@
                 <span class="tag">JS</span>
                 <span class="tag">Bootstrap</span>
               </div>
-              <h3 class="project-title">Project One</h3>
+
+              <h3 class="project-title">
+                Project One
+              </h3>
+
               <p class="project-desc">
-                Designed and developed a modern music website using HTML, CSS, Bootstrap, and JavaScript with a fully responsive layout.
+                Designed and developed a modern music website using HTML, CSS,
+                Bootstrap, and JavaScript with a fully responsive layout.
               </p>
-              <a href="https://moosamusicworld.netlify.app/" class="project-link" target="_blank">
-                View Project <i class="bi bi-arrow-right"></i>
+
+              <a
+                href="https://moosamusicworld.netlify.app/"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Project
+                <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4 reveal delay-2">
+
+        <div class="col-md-6 col-lg-4 reveal reveal-right delay-2">
           <div class="project-card">
-            <div class="project-thumb" style="background: linear-gradient(135deg, #2d1a3a, #1a0d2e);">
+            <div
+              class="project-thumb"
+              style="
+                background:
+                  linear-gradient(
+                    135deg,
+                    rgba(139, 92, 246, 0.55),
+                    rgba(26, 13, 46, 0.9)
+                  );
+              "
+            >
               <i class="bi bi-layout-text-sidebar-reverse"></i>
             </div>
+
             <div class="project-card-body">
               <div class="project-tags">
                 <span class="tag">PHP</span>
                 <span class="tag">MySQL</span>
               </div>
-              <h3 class="project-title">Project Two</h3>
+
+              <h3 class="project-title">
+                Project Two
+              </h3>
+
               <p class="project-desc">
-                Describe your second project here. What problem did it
-                solve? Who was it built for? What technologies did you use?
+                Describe your second project here. What problem did it solve?
+                Who was it built for? What technologies did you use?
               </p>
-              <a href="#" class="project-link" target="_blank">
-                View Project <i class="bi bi-arrow-right"></i>
+
+              <a
+                href="#"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Project
+                <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4 reveal delay-3">
+
+        <div class="col-md-6 col-lg-4 reveal reveal-left delay-3">
           <div class="project-card">
-            <div class="project-thumb" style="background: linear-gradient(135deg, #1a3a2a, #0d2018);">
+            <div
+              class="project-thumb"
+              style="
+                background:
+                  linear-gradient(
+                    135deg,
+                    rgba(20, 184, 166, 0.45),
+                    rgba(13, 32, 24, 0.9)
+                  );
+              "
+            >
               <i class="bi bi-bar-chart-fill"></i>
             </div>
+
             <div class="project-card-body">
               <div class="project-tags">
                 <span class="tag">JavaScript</span>
                 <span class="tag">CSS</span>
               </div>
-              <h3 class="project-title">Project Three</h3>
+
+              <h3 class="project-title">
+                Project Three
+              </h3>
+
               <p class="project-desc">
-                Your third project. Keep descriptions concise — two to three
+                Your third project. Keep descriptions concise—two to three
                 sentences is ideal. Link to GitHub or a live demo below.
               </p>
-              <a href="#" class="project-link" target="_blank">
-                View Project <i class="bi bi-arrow-right"></i>
+
+              <a
+                href="#"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Project
+                <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
         </div>
-      </div><!-- /row -->
-      <div class="text-center mt-5 reveal">
-        <!-- ★ Replace # with your GitHub profile URL -->
-        <a href="https://github.com/moosa-tech" target="_blank" class="hero-cta-outline" style="display:inline-flex;">
-          <i class="bi bi-github"></i> See More on GitHub
-        </a>
       </div>
 
+      <div class="text-center mt-5 reveal reveal-right">
+        <a
+          href="https://github.com/moosa-tech"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hero-cta-outline"
+        >
+          <i class="bi bi-github"></i>
+          See More on GitHub
+        </a>
+      </div>
     </div>
-  </section><!-- /projects -->
-<!-- Contact -->
+  </section>
+
+  <!-- Contact -->
   <section id="contact">
     <div class="container">
-      <div class="text-center mb-5 reveal">
+      <div class="text-center mb-5 reveal reveal-left">
         <p class="section-label">Let's Talk</p>
-        <h2 class="section-title">Get In Touch</h2>
-        <hr class="section-divider mx-auto">
-        <p style="color:var(--muted); max-width:480px; margin:0 auto; font-size:0.9rem;">
+
+        <h2 class="section-title">
+          Get In Touch
+        </h2>
+
+        <hr class="section-divider mx-auto" />
+
+        <p
+          style="
+            color: var(--muted);
+            max-width: 480px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+          "
+        >
           Have a project in mind or just want to say hello?
           I'd love to hear from you.
         </p>
       </div>
+
       <div class="row g-4 align-items-start">
-        <div class="col-lg-5 reveal delay-1">
+        <div class="col-lg-5 reveal reveal-left delay-1">
           <div class="contact-card h-100">
             <div class="contact-info-item">
-              <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
+              <div class="contact-icon">
+                <i class="bi bi-envelope-fill"></i>
+              </div>
+
               <div>
                 <p class="contact-info-label">Email</p>
                 <p class="contact-info-value">
-                  <a href="mailto:moosazahid000@gmail.com">moosazahid000@gmail.com</a>
+                  <a href="mailto:moosazahid000@gmail.com">
+                    moosazahid000@gmail.com
+                  </a>
                 </p>
               </div>
             </div>
+
             <div class="contact-info-item">
-              <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
+              <div class="contact-icon">
+                <i class="bi bi-telephone-fill"></i>
+              </div>
+
               <div>
                 <p class="contact-info-label">WhatsApp</p>
-                <p class="contact-info-value">+92 344-355-8434</p>
+                <p class="contact-info-value">
+                  +92 344-355-8434
+                </p>
               </div>
             </div>
+
             <div class="contact-info-item">
-              <div class="contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+              <div class="contact-icon">
+                <i class="bi bi-geo-alt-fill"></i>
+              </div>
+
               <div>
                 <p class="contact-info-label">Location</p>
-                <p class="contact-info-value">Karachi, Pakistan</p>
+                <p class="contact-info-value">
+                  Karachi, Pakistan
+                </p>
               </div>
             </div>
-            <div class="contact-info-item" style="margin-bottom:0;">
-              <div class="contact-icon"><i class="bi bi-circle-fill" style="color:#4ade80; font-size:0.6rem;"></i></div>
+
+            <div
+              class="contact-info-item"
+              style="margin-bottom: 0;"
+            >
+              <div class="contact-icon">
+                <i
+                  class="bi bi-circle-fill"
+                  style="color: var(--green); font-size: 0.6rem;"
+                ></i>
+              </div>
+
               <div>
                 <p class="contact-info-label">Availability</p>
-                <p class="contact-info-value" style="color:#4ade80;">Open to opportunities</p>
+                <p
+                  class="contact-info-value"
+                  style="color: var(--green);"
+                >
+                  Open to opportunities
+                </p>
               </div>
             </div>
-
           </div>
         </div>
-<div class="col-lg-7 reveal delay-2">
-    <div class="contact-card">
 
-        <h3 class="mb-4">Connect With Me</h3>
+        <div class="col-lg-7 reveal reveal-right delay-2">
+          <div class="contact-card">
+            <h3 class="mb-4">
+              Connect With Me
+            </h3>
 
-        <div class="d-grid gap-3">
-
-            <a href="https://www.linkedin.com/in/moosabytes7474/" target="_blank" class="btn btn-outline-warning text-start py-3">
+            <div class="d-grid gap-3">
+              <a
+                href=" https:/www.linkedin.com/in/moosabytes/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-outline-warning text-start py-3"
+              >
                 <i class="bi bi-linkedin me-2"></i>
                 LinkedIn
-            </a>
+              </a>
 
-            <a href="https://github.com/moosa-tech" target="_blank" class="btn btn-outline-warning text-start py-3">
+              <a
+                href="https://github.com/moosa-tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-outline-warning text-start py-3"
+              >
                 <i class="bi bi-github me-2"></i>
                 GitHub
-            </a>
+              </a>
 
-            <a href="https://www.instagram.com/moosa_bytes" target="_blank" class="btn btn-outline-warning text-start py-3">
+              <a
+                href="https://www.instagram.com/moosa_bytes"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-outline-warning text-start py-3"
+              >
                 <i class="bi bi-instagram me-2"></i>
                 Instagram
-            </a>
+              </a>
 
-            <a href="" target="_blank" class="btn btn-outline-warning text-start py-3">
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-outline-warning text-start py-3"
+              >
                 <i class="bi bi-facebook me-2"></i>
                 Facebook
-            </a>
+              </a>
+            </div>
+          </div>
         </div>
-
-    </div>
-</div>
-
       </div>
     </div>
-  </section><!-- /contact -->
-<!-- Footer -->
+  </section>
+
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="row align-items-center g-4">
         <div class="col-md-6">
-          <div class="footer-brand">H<span>M</span> <!-- ★ Your initials --> </div>
-          <p class="footer-tagline">Building the web, one line at a time.</p>
+          <div class="footer-brand">
+            H<span>M</span>
+          </div>
+
+          <p class="footer-tagline">
+            Building the web, one line at a time.
+          </p>
         </div>
+
         <div class="col-md-6 text-md-end">
           <div class="social-links justify-content-md-end">
-            <!-- ★ Replace # with your real social profile URLs -->
-            <a href="https://github.com/moosa-tech" class="social-btn" target="_blank" aria-label="GitHub">
+            <a
+              href="https://github.com/moosa-tech"
+              class="social-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
               <i class="bi bi-github"></i>
             </a>
-            <a href="https://www.linkedin.com/in/moosabytes7474/" class="social-btn" target="_blank" aria-label="LinkedIn">
+
+            <a
+              href=" https:/linkedin.com/in/moosabytes/"
+              class="social-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
               <i class="bi bi-linkedin"></i>
             </a>
-            <a href="https://www.instagram.com/moosa_bytes" class="social-btn" target="_blank" aria-label="Instagram">
+
+            <a
+              href="https://www.instagram.com/moosa_bytes"
+              class="social-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
               <i class="bi bi-instagram"></i>
             </a>
-            <a href="#" class="social-btn" target="_blank" aria-label="Facebook">
+
+            <a
+              href="#"
+              class="social-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
               <i class="bi bi-facebook"></i>
             </a>
           </div>
         </div>
       </div>
-      <div class="footer-bottom d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
-        <!-- ★ Replace "Your Name" below -->
-        <span>&copy; <span id="year"></span> All rights reserved.</span>
-        <span>Made with <i class="bi bi-heart-fill" style="color:var(--amber);"></i> and lots of ☕</span>
+
+      <div
+        class="footer-bottom d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2"
+      >
+        <span>
+          &copy;
+          <span id="year"></span>
+          All rights reserved.
+        </span>
+
+        <span>
+          Made with
+          <i
+            class="bi bi-heart-fill"
+            style="color: var(--purple);"
+          ></i>
+          and lots of ☕
+        </span>
       </div>
     </div>
   </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
+
   <script>
-    const nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
+    /* Navigation background */
+
+    const nav = document.getElementById("mainNav");
+
+    function updateNavigation() {
+      nav.classList.toggle("scrolled", window.scrollY > 60);
+    }
+
+    window.addEventListener("scroll", updateNavigation, {
+      passive: true
     });
 
-    /* =====================================================
-       ACTIVE NAV LINK — highlights current section
-    ===================================================== */
-    const navLinks = document.querySelectorAll('#mainNav .nav-link');
-    const sections = document.querySelectorAll('section[id]');
+    updateNavigation();
 
-    const activateLink = () => {
-      let current = '';
-      sections.forEach(sec => {
-        if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+    /* Active navigation link */
+
+    const navLinks = document.querySelectorAll("#mainNav .nav-link");
+    const sections = document.querySelectorAll("section[id]");
+
+    function activateNavigationLink() {
+      let currentSection = "";
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 150;
+
+        if (window.scrollY >= sectionTop) {
+          currentSection = section.id;
+        }
       });
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+
+      navLinks.forEach((link) => {
+        const isActive =
+          link.getAttribute("href") === "#" + currentSection;
+
+        link.classList.toggle("active", isActive);
       });
-    };
+    }
 
-    window.addEventListener('scroll', activateLink);
+    window.addEventListener("scroll", activateNavigationLink, {
+      passive: true
+    });
 
-    /* Close mobile nav after a link click */
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        const collapse = document.getElementById('navMenu');
-        const bsCollapse = bootstrap.Collapse.getInstance(collapse);
-        if (bsCollapse) bsCollapse.hide();
+    activateNavigationLink();
+
+    /* Close mobile navigation after clicking a link */
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        const collapseElement = document.getElementById("navMenu");
+        const collapseInstance =
+          bootstrap.Collapse.getInstance(collapseElement);
+
+        if (collapseInstance) {
+          collapseInstance.hide();
+        }
       });
     });
 
-    /* =====================================================
-       TYPEWRITER EFFECT
-       ★ Edit the `roles` array to show your own titles.
-    ===================================================== */
+    /* Typewriter */
+
     const roles = [
-      'Web Developer',
-      'Front-End Developer',
-      'PHP Developer',
-      'Problem Solver',
+      "Web Developer",
+      "Front-End Developer",
+      "PHP Developer",
+      "Problem Solver"
     ];
 
-    let roleIdx = 0, charIdx = 0, deleting = false;
-    const tw = document.getElementById('typewriterText');
+    let roleIndex = 0;
+    let characterIndex = 0;
+    let deleting = false;
 
-    function type() {
-      const word = roles[roleIdx];
+    const typewriter = document.getElementById("typewriterText");
+
+    function typeRole() {
+      const currentRole = roles[roleIndex];
+
       if (!deleting) {
-        tw.textContent = word.slice(0, ++charIdx);
-        if (charIdx === word.length) {
+        characterIndex++;
+        typewriter.textContent =
+          currentRole.slice(0, characterIndex);
+
+        if (characterIndex === currentRole.length) {
           deleting = true;
-          setTimeout(type, 1800); // pause at full word
+          setTimeout(typeRole, 1800);
           return;
         }
       } else {
-        tw.textContent = word.slice(0, --charIdx);
-        if (charIdx === 0) {
+        characterIndex--;
+        typewriter.textContent =
+          currentRole.slice(0, characterIndex);
+
+        if (characterIndex === 0) {
           deleting = false;
-          roleIdx = (roleIdx + 1) % roles.length;
+          roleIndex = (roleIndex + 1) % roles.length;
         }
       }
-      setTimeout(type, deleting ? 60 : 110);
+
+      setTimeout(typeRole, deleting ? 58 : 105);
     }
 
-    setTimeout(type, 700); // small delay before starting
+    setTimeout(typeRole, 700);
 
-    /* =====================================================
-       SCROLL-REVEAL — fade + slide up elements
-    ===================================================== */
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target); // fire once
+    /* Continuous scroll reveal */
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if (!reduceMotion) {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            entry.target.classList.toggle(
+              "visible",
+              entry.isIntersecting
+            );
+          });
+        },
+        {
+          threshold: 0.14,
+          rootMargin: "0px 0px -8% 0px"
         }
+      );
+
+      revealElements.forEach((element, index) => {
+        if (
+          !element.classList.contains("reveal-left") &&
+          !element.classList.contains("reveal-right")
+        ) {
+          element.classList.add(
+            index % 2 === 0 ? "reveal-left" : "reveal-right"
+          );
+        }
+
+        revealObserver.observe(element);
       });
-    }, { threshold: 0.12 });
+    } else {
+      revealElements.forEach((element) => {
+        element.classList.add("visible");
+      });
+    }
 
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    /* Three.js particle background */
 
-    /* =====================================================
-       FOOTER — auto-update copyright year
-    ===================================================== */
-    document.getElementById('year').textContent = new Date().getFullYear();
+    if (!reduceMotion && window.THREE) {
+      const canvas = document.getElementById("heroCanvas");
+      const hero = document.getElementById("hero");
+
+      const scene = new THREE.Scene();
+
+      const camera = new THREE.PerspectiveCamera(
+        55,
+        1,
+        0.1,
+        100
+      );
+
+      camera.position.z = 6;
+
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        alpha: true,
+        antialias: true
+      });
+
+      renderer.setPixelRatio(
+        Math.min(window.devicePixelRatio, 1.75)
+      );
+
+      const particleCount =
+        window.innerWidth < 768 ? 220 : 480;
+
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(
+        particleCount * 3
+      );
+
+      for (let index = 0; index < particleCount; index++) {
+        const positionIndex = index * 3;
+
+        positions[positionIndex] =
+          (Math.random() - 0.5) * 13;
+
+        positions[positionIndex + 1] =
+          (Math.random() - 0.5) * 8;
+
+        positions[positionIndex + 2] =
+          (Math.random() - 0.5) * 5;
+      }
+
+      geometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(positions, 3)
+      );
+
+      const material = new THREE.PointsMaterial({
+        color: 0xa78bfa,
+        size: 0.035,
+        transparent: true,
+        opacity: 0.76,
+        sizeAttenuation: true
+      });
+
+      const particles = new THREE.Points(
+        geometry,
+        material
+      );
+
+      scene.add(particles);
+
+      const pointer = {
+        x: 0,
+        y: 0
+      };
+
+      let heroVisible = true;
+
+      function resizeHeroScene() {
+        const heroBounds =
+          hero.getBoundingClientRect();
+
+        camera.aspect =
+          heroBounds.width / heroBounds.height;
+
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(
+          heroBounds.width,
+          heroBounds.height,
+          false
+        );
+      }
+
+      window.addEventListener(
+        "resize",
+        resizeHeroScene
+      );
+
+      resizeHeroScene();
+
+      window.addEventListener(
+        "pointermove",
+        (event) => {
+          pointer.x =
+            (event.clientX / window.innerWidth - 0.5) * 2;
+
+          pointer.y =
+            (event.clientY / window.innerHeight - 0.5) * 2;
+        },
+        {
+          passive: true
+        }
+      );
+
+      const heroVisibilityObserver =
+        new IntersectionObserver(
+          ([entry]) => {
+            heroVisible = entry.isIntersecting;
+          },
+          {
+            threshold: 0.03
+          }
+        );
+
+      heroVisibilityObserver.observe(hero);
+
+      function renderHeroScene(time) {
+        requestAnimationFrame(renderHeroScene);
+
+        if (!heroVisible) {
+          return;
+        }
+
+        const scrollRatio = Math.min(
+          window.scrollY / window.innerHeight,
+          1
+        );
+
+        particles.rotation.y =
+          time * 0.00008 + pointer.x * 0.14;
+
+        particles.rotation.x =
+          pointer.y * 0.08 - scrollRatio * 0.16;
+
+        particles.position.x +=
+          (pointer.x * 0.22 - particles.position.x) *
+          0.015;
+
+        particles.position.y +=
+          (-pointer.y * 0.16 - particles.position.y) *
+          0.015;
+
+        renderer.render(scene, camera);
+      }
+
+      renderHeroScene(0);
+    }
+
+    /* Footer year */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
   </script>
-
 </body>
 </html>

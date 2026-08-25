@@ -59,70 +59,77 @@
   </nav>
 
   <!-- Hero -->
-  <section id="hero">
-    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+<section id="hero">
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
 
-    <div class="hero-orb orb-one"></div>
-    <div class="hero-orb orb-two"></div>
+  <div class="hero-orb orb-one"></div>
+  <div class="hero-orb orb-two"></div>
 
-    <div class="container hero-inner">
-      <div class="row align-items-center min-vh-100">
-        <div class="col-lg-8">
-          <p class="hero-greeting reveal reveal-left">
-            Hello, I'm
-          </p>
+  <div class="container hero-inner">
+    <div class="row align-items-center justify-content-center min-vh-100">
+      <div class="col-12 col-lg-8 hero-content">
+        <p class="hero-greeting reveal reveal-left">
+          Hello, I'm
+        </p>
 
-          <h1 class="hero-name reveal reveal-left delay-1">
-            Hafiz <span class="accent">M.Moosa</span>
-          </h1>
+        <h1 class="hero-name reveal reveal-left delay-1">
+          your <span class="accent">name</span>
+        </h1>
 
-          <p class="hero-tagline reveal reveal-left delay-2">
-            <span id="typewriterText" class="typewriter-wrap"></span>
-          </p>
+        <p class="hero-tagline reveal reveal-left delay-2">
+          <span
+            id="typewriterText"
+            class="typewriter-wrap"
+          ></span>
+        </p>
 
-          <div class="hero-actions reveal reveal-left delay-3">
-            <a href="#projects" class="hero-cta">
-              <i class="bi bi-grid-3x3-gap-fill"></i>
-              View My Work
-            </a>
+        <div class="hero-actions reveal reveal-left delay-3">
+          <a href="#projects" class="hero-cta">
+            <i class="bi bi-grid-3x3-gap-fill"></i>
+            View My Work
+          </a>
 
-            <a href="asset/files/cv.pdf" class="hero-cta-outline" download>
-              <i class="bi bi-download"></i>
-              Download Resume
-            </a>
+          <a
+            href="asset/files/cv.pdf"
+            class="hero-cta-outline"
+            download
+          >
+            <i class="bi bi-download"></i>
+            Download Resume
+          </a>
 
-            <a href="#contact" class="hero-text-link">
-              Get in touch
-              <i class="bi bi-arrow-up-right"></i>
-            </a>
-          </div>
+          <a href="#contact" class="hero-text-link">
+            Get in touch
+            <i class="bi bi-arrow-up-right"></i>
+          </a>
         </div>
+      </div>
 
-        <div class="col-lg-4 d-none d-lg-flex justify-content-end">
-          <div class="hero-code-card reveal reveal-right delay-2">
-            <div class="code-card-top">
-              <span></span>
-              <span></span>
-              <span></span>
-              <small>portfolio.js</small>
-            </div>
+      <div class="col-lg-4 d-none d-lg-flex justify-content-end">
+        <div class="hero-code-card reveal reveal-right delay-2">
+          <div class="code-card-top">
+            <span></span>
+            <span></span>
+            <span></span>
+            <small>portfolio.js</small>
+          </div>
 
-            <pre><code><span class="code-purple">const</span> developer = {
-  name: <span class="code-green">"Hafiz Moosa"</span>,
+          <pre><code><span class="code-purple">const</span> developer = {
+  name: <span class="code-green">"your name"</span>,
   focus: <span class="code-green">"Frontend"</span>,
   builds: <span class="code-orange">true</span>,
   available: <span class="code-orange">true</span>
 };</code></pre>
-          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="scroll-hint">
-      <span>Scroll to explore</span>
-      <i class="bi bi-chevron-down"></i>
-    </div>
-  </section>
+  <div class="scroll-hint">
+    <span>Scroll to explore</span>
+    <i class="bi bi-chevron-down"></i>
+  </div>
+</section>
 
   <!-- About -->
   <section id="about">
@@ -818,30 +825,49 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
 
   <script>
-    /* Navigation background */
+  document.addEventListener("DOMContentLoaded", () => {
+    /* =========================
+       Navigation background
+    ========================= */
 
     const nav = document.getElementById("mainNav");
 
     function updateNavigation() {
-      nav.classList.toggle("scrolled", window.scrollY > 60);
+      if (!nav) return;
+
+      nav.classList.toggle(
+        "scrolled",
+        window.scrollY > 60
+      );
     }
 
-    window.addEventListener("scroll", updateNavigation, {
-      passive: true
-    });
+    window.addEventListener(
+      "scroll",
+      updateNavigation,
+      { passive: true }
+    );
 
     updateNavigation();
 
-    /* Active navigation link */
 
-    const navLinks = document.querySelectorAll("#mainNav .nav-link");
-    const sections = document.querySelectorAll("section[id]");
+    /* =========================
+       Active navigation link
+    ========================= */
+
+    const navLinks = document.querySelectorAll(
+      "#mainNav .nav-link"
+    );
+
+    const sections = document.querySelectorAll(
+      "section[id]"
+    );
 
     function activateNavigationLink() {
       let currentSection = "";
 
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 150;
+        const sectionTop =
+          section.offsetTop - 150;
 
         if (window.scrollY >= sectionTop) {
           currentSection = section.id;
@@ -849,26 +875,40 @@
       });
 
       navLinks.forEach((link) => {
-        const isActive =
-          link.getAttribute("href") === "#" + currentSection;
+        const linkTarget =
+          link.getAttribute("href");
 
-        link.classList.toggle("active", isActive);
+        link.classList.toggle(
+          "active",
+          linkTarget === "#" + currentSection
+        );
       });
     }
 
-    window.addEventListener("scroll", activateNavigationLink, {
-      passive: true
-    });
+    window.addEventListener(
+      "scroll",
+      activateNavigationLink,
+      { passive: true }
+    );
 
     activateNavigationLink();
 
-    /* Close mobile navigation after clicking a link */
+
+    /* =========================
+       Close mobile navigation
+    ========================= */
 
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
-        const collapseElement = document.getElementById("navMenu");
+        const navMenu =
+          document.getElementById("navMenu");
+
+        if (!navMenu || !window.bootstrap) {
+          return;
+        }
+
         const collapseInstance =
-          bootstrap.Collapse.getInstance(collapseElement);
+          bootstrap.Collapse.getInstance(navMenu);
 
         if (collapseInstance) {
           collapseInstance.hide();
@@ -876,7 +916,10 @@
       });
     });
 
-    /* Typewriter */
+
+    /* =========================
+       Typewriter effect
+    ========================= */
 
     const roles = [
       "Web Developer",
@@ -885,148 +928,237 @@
       "Problem Solver"
     ];
 
+    const typewriter =
+      document.getElementById("typewriterText");
+
     let roleIndex = 0;
     let characterIndex = 0;
     let deleting = false;
 
-    const typewriter = document.getElementById("typewriterText");
-
     function typeRole() {
-      const currentRole = roles[roleIndex];
+      if (!typewriter) return;
+
+      const currentRole =
+        roles[roleIndex];
 
       if (!deleting) {
         characterIndex++;
-        typewriter.textContent =
-          currentRole.slice(0, characterIndex);
 
-        if (characterIndex === currentRole.length) {
+        typewriter.textContent =
+          currentRole.slice(
+            0,
+            characterIndex
+          );
+
+        if (
+          characterIndex >=
+          currentRole.length
+        ) {
           deleting = true;
+
           setTimeout(typeRole, 1800);
           return;
         }
       } else {
         characterIndex--;
-        typewriter.textContent =
-          currentRole.slice(0, characterIndex);
 
-        if (characterIndex === 0) {
+        typewriter.textContent =
+          currentRole.slice(
+            0,
+            characterIndex
+          );
+
+        if (characterIndex <= 0) {
+          characterIndex = 0;
           deleting = false;
-          roleIndex = (roleIndex + 1) % roles.length;
+
+          roleIndex =
+            (roleIndex + 1) %
+            roles.length;
         }
       }
 
-      setTimeout(typeRole, deleting ? 58 : 105);
+      setTimeout(
+        typeRole,
+        deleting ? 58 : 105
+      );
     }
 
     setTimeout(typeRole, 700);
 
-    /* Continuous scroll reveal */
 
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    /* =========================
+       Scroll reveal animation
+    ========================= */
 
-    const revealElements = document.querySelectorAll(".reveal");
+    const reduceMotion =
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
 
-    if (!reduceMotion) {
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            entry.target.classList.toggle(
-              "visible",
-              entry.isIntersecting
-            );
-          });
-        },
-        {
-          threshold: 0.14,
-          rootMargin: "0px 0px -8% 0px"
-        }
-      );
+    const revealElements =
+      document.querySelectorAll(".reveal");
 
-      revealElements.forEach((element, index) => {
-        if (
-          !element.classList.contains("reveal-left") &&
-          !element.classList.contains("reveal-right")
-        ) {
-          element.classList.add(
-            index % 2 === 0 ? "reveal-left" : "reveal-right"
-          );
-        }
-
-        revealObserver.observe(element);
-      });
-    } else {
+    if (reduceMotion) {
       revealElements.forEach((element) => {
         element.classList.add("visible");
       });
+    } else {
+      const revealObserver =
+        new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              entry.target.classList.toggle(
+                "visible",
+                entry.isIntersecting
+              );
+            });
+          },
+          {
+            threshold: 0.14,
+            rootMargin:
+              "0px 0px -8% 0px"
+          }
+        );
+
+      revealElements.forEach(
+        (element, index) => {
+          if (
+            !element.classList.contains(
+              "reveal-left"
+            ) &&
+            !element.classList.contains(
+              "reveal-right"
+            )
+          ) {
+            element.classList.add(
+              index % 2 === 0
+                ? "reveal-left"
+                : "reveal-right"
+            );
+          }
+
+          revealObserver.observe(element);
+        }
+      );
     }
 
-    /* Three.js particle background */
 
-    if (!reduceMotion && window.THREE) {
-      const canvas = document.getElementById("heroCanvas");
-      const hero = document.getElementById("hero");
+    /* =========================
+       Three.js particle animation
+    ========================= */
 
-      const scene = new THREE.Scene();
+    if (
+      !reduceMotion &&
+      window.THREE
+    ) {
+      const canvas =
+        document.getElementById(
+          "heroCanvas"
+        );
 
-      const camera = new THREE.PerspectiveCamera(
-        55,
-        1,
-        0.1,
-        100
-      );
+      const hero =
+        document.getElementById("hero");
+
+      if (!canvas || !hero) {
+        return;
+      }
+
+      const scene =
+        new THREE.Scene();
+
+      const camera =
+        new THREE.PerspectiveCamera(
+          55,
+          1,
+          0.1,
+          100
+        );
 
       camera.position.z = 6;
 
-      const renderer = new THREE.WebGLRenderer({
-        canvas,
-        alpha: true,
-        antialias: true
-      });
+      const renderer =
+        new THREE.WebGLRenderer({
+          canvas,
+          alpha: true,
+          antialias: true,
+          powerPreference: "high-performance"
+        });
 
       renderer.setPixelRatio(
-        Math.min(window.devicePixelRatio, 1.75)
+        Math.min(
+          window.devicePixelRatio,
+          1.5
+        )
       );
+
+      const isMobile =
+        window.matchMedia(
+          "(max-width: 768px)"
+        ).matches;
 
       const particleCount =
-        window.innerWidth < 768 ? 220 : 480;
+        isMobile ? 150 : 360;
 
-      const geometry = new THREE.BufferGeometry();
-      const positions = new Float32Array(
-        particleCount * 3
-      );
+      const geometry =
+        new THREE.BufferGeometry();
 
-      for (let index = 0; index < particleCount; index++) {
-        const positionIndex = index * 3;
+      const positions =
+        new Float32Array(
+          particleCount * 3
+        );
+
+      const randomValues =
+        new Float32Array(
+          particleCount
+        );
+
+      for (
+        let index = 0;
+        index < particleCount;
+        index++
+      ) {
+        const positionIndex =
+          index * 3;
 
         positions[positionIndex] =
-          (Math.random() - 0.5) * 13;
+          (Math.random() - 0.5) * 12;
 
         positions[positionIndex + 1] =
-          (Math.random() - 0.5) * 8;
+          (Math.random() - 0.5) * 7;
 
         positions[positionIndex + 2] =
-          (Math.random() - 0.5) * 5;
+          (Math.random() - 0.5) * 4;
+
+        randomValues[index] =
+          Math.random() * Math.PI * 2;
       }
 
       geometry.setAttribute(
         "position",
-        new THREE.BufferAttribute(positions, 3)
+        new THREE.BufferAttribute(
+          positions,
+          3
+        )
       );
 
-      const material = new THREE.PointsMaterial({
-        color: 0xa78bfa,
-        size: 0.035,
-        transparent: true,
-        opacity: 0.76,
-        sizeAttenuation: true
-      });
+      const material =
+        new THREE.PointsMaterial({
+          color: 0xa78bfa,
+          size: isMobile
+            ? 0.045
+            : 0.035,
+          transparent: true,
+          opacity: 0.72,
+          sizeAttenuation: true,
+          depthWrite: false
+        });
 
-      const particles = new THREE.Points(
-        geometry,
-        material
-      );
+      const particles =
+        new THREE.Points(
+          geometry,
+          material
+        );
 
       scene.add(particles);
 
@@ -1038,24 +1170,38 @@
       let heroVisible = true;
 
       function resizeHeroScene() {
-        const heroBounds =
-          hero.getBoundingClientRect();
+        const width =
+          Math.max(
+            1,
+            Math.floor(
+              hero.clientWidth
+            )
+          );
+
+        const height =
+          Math.max(
+            1,
+            Math.floor(
+              hero.clientHeight
+            )
+          );
 
         camera.aspect =
-          heroBounds.width / heroBounds.height;
+          width / height;
 
         camera.updateProjectionMatrix();
 
         renderer.setSize(
-          heroBounds.width,
-          heroBounds.height,
+          width,
+          height,
           false
         );
       }
 
       window.addEventListener(
         "resize",
-        resizeHeroScene
+        resizeHeroScene,
+        { passive: true }
       );
 
       resizeHeroScene();
@@ -1064,64 +1210,93 @@
         "pointermove",
         (event) => {
           pointer.x =
-            (event.clientX / window.innerWidth - 0.5) * 2;
+            (event.clientX /
+              window.innerWidth -
+              0.5) * 2;
 
           pointer.y =
-            (event.clientY / window.innerHeight - 0.5) * 2;
+            (event.clientY /
+              window.innerHeight -
+              0.5) * 2;
         },
-        {
-          passive: true
-        }
+        { passive: true }
       );
 
-      const heroVisibilityObserver =
+      const visibilityObserver =
         new IntersectionObserver(
           ([entry]) => {
-            heroVisible = entry.isIntersecting;
+            heroVisible =
+              entry.isIntersecting;
           },
           {
             threshold: 0.03
           }
         );
 
-      heroVisibilityObserver.observe(hero);
+      visibilityObserver.observe(hero);
 
-      function renderHeroScene(time) {
-        requestAnimationFrame(renderHeroScene);
+      function animateParticles(time) {
+        requestAnimationFrame(
+          animateParticles
+        );
 
         if (!heroVisible) {
           return;
         }
 
-        const scrollRatio = Math.min(
-          window.scrollY / window.innerHeight,
-          1
-        );
+        const seconds =
+          time * 0.001;
 
         particles.rotation.y =
-          time * 0.00008 + pointer.x * 0.14;
+          seconds * 0.08 +
+          pointer.x * 0.12;
 
         particles.rotation.x =
-          pointer.y * 0.08 - scrollRatio * 0.16;
+          pointer.y * 0.07;
 
         particles.position.x +=
-          (pointer.x * 0.22 - particles.position.x) *
-          0.015;
+          (
+            pointer.x * 0.18 -
+            particles.position.x
+          ) * 0.012;
 
         particles.position.y +=
-          (-pointer.y * 0.16 - particles.position.y) *
-          0.015;
+          (
+            -pointer.y * 0.12 -
+            particles.position.y
+          ) * 0.012;
 
-        renderer.render(scene, camera);
+        particles.position.z =
+          Math.sin(seconds * 0.45) *
+          0.08;
+
+        particles.material.opacity =
+          0.62 +
+          Math.sin(seconds * 0.8) *
+          0.08;
+
+        renderer.render(
+          scene,
+          camera
+        );
       }
 
-      renderHeroScene(0);
+      animateParticles(0);
     }
 
-    /* Footer year */
 
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
+    /* =========================
+       Footer year
+    ========================= */
+
+    const yearElement =
+      document.getElementById("year");
+
+    if (yearElement) {
+      yearElement.textContent =
+        new Date().getFullYear();
+    }
+  });
+</script>
 </body>
 </html>
